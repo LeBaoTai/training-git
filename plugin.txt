@@ -1,0 +1,141 @@
+call plug#begin()
+
+"vim problem infor
+Plug 'vim-syntastic/syntastic'
+"change string fast
+Plug 'terryma/vim-multiple-cursors'
+"fzf
+Plug 'junegunn/fzf', { 'do': { -> fzf#install()  }  }
+Plug 'junegunn/fzf.vim'
+"comment
+Plug 'tpope/vim-commentary'
+"auto close pair
+Plug 'jiangmiao/auto-pairs'
+"rain bow`
+Plug 'frazrepo/vim-rainbow'
+"nerd tree
+Plug 'scrooloose/nerdtree'
+"icon
+Plug 'ryanoasis/vim-devicons'
+"theme
+Plug 'bluz71/vim-nightfly-guicolors'
+Plug 'joshdick/onedark.vim'
+Plug 'kyoz/purify', { 'rtp': 'vim'  }
+"surround
+Plug 'tpope/vim-surround'
+"ariline 
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+
+call plug#end()
+
+set termguicolors
+syntax enable
+syntax on
+set encoding=UTF-8
+
+if has("gui_running")  
+	    colorscheme nightfly  
+	else  
+		colorscheme onedark 
+endif
+set background=dark
+set t_Co=256
+set noswapfile
+set showcmd 
+set autoread
+set autowrite 
+
+set tabstop=4
+set shiftwidth=4
+
+set splitbelow splitright
+
+set ruler
+
+"number
+set number
+set relativenumber
+set numberwidth=5
+
+"rainbow
+let g:rainbow_active = 1
+let g:rainbow_load_separately = [
+    \ [ '*' , [['(', ')'], ['\[', '\]'], ['{', '}']] ],
+    \ [ '*.tex' , [['(', ')'], ['\[', '\]']] ],
+    \ [ '*.cpp' , [['(', ')'], ['\[', '\]'], ['{', '}']] ],
+    \ [ '*.{html,htm}' , [['(', ')'], ['\[', '\]'], ['{', '}'], ['<\a[^>]*>', '</[^>]*>']] ],
+    \ ]
+let g:rainbow_guifgs = ['Gold', '#D95F74', 'LightSkyBlue', '#FF9363']
+let g:rainbow_ctermfgs = ['darkblue', 'darkmagenta', 'darkcyan', 'darkred'] 
+
+let g:airline_theme='purify'
+let g:airline_powerline_fonts = 1
+let g:cpp_named_requirements_highlight = 1
+
+let NVIM_TUI_ENABLE_TRUE_COLOR=1
+
+" compile c/c++ program
+ nnoremap <f6> <esc>:!gcc -o %:r %:t<enter>
+ nnoremap <C-c> <esc>:!g++ -std=c++14 -o %:r %:t<CR>
+" run c/c++
+ nnoremap <C-x> <esc>:ter %:r.exe <enter>
+ 
+ "nerdtree
+map <C-b> :NERDTreeToggle<CR> 
+map <C-i> :NERDTreeFind<CR>
+let g:NERDTreeDirArrowExpandable = '►'
+let g:NERDTreeDirArrowCollapsible = '▼'
+
+"no hightlight
+map <C-h> :nohl<CR>
+
+"tab in v-mode
+vmap <Tab> >gv
+vmap <S-Tab> <g
+
+"kh xai mui ten
+nnoremap <Left> :echoe "Use h"<CR>
+nnoremap <Right> :echoe "Use l"<CR>
+nnoremap <Up> :echoe "Use k"<CR>
+nnoremap <Down> :echoe "Use j"<CR>
+
+"multi_cursor_
+let g:multi_cursor_use_default_mapping=0
+
+" Default mapping
+let g:multi_cursor_start_word_key      = '<C-n>'
+let g:multi_cursor_select_all_word_key = '<A-n>'
+let g:multi_cursor_start_key           = 'g<C-n>'
+let g:multi_cursor_select_all_key      = 'g<A-n>'
+let g:multi_cursor_next_key            = '<C-n>'
+let g:multi_cursor_prev_key            = '<C-p>'
+let g:multi_cursor_skip_key            = '<C-x>'
+let g:multi_cursor_quit_key            = '<Esc>'
+
+"fzf
+noremap ` :Files<CR>
+noremap ; :Buffers<CR>
+
+"default cursor
+set guicursor&
+
+"vim syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list= 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+"ctags
+set tags=D:\CODE\
+
+"insertmode 
+imap <C-k> <Left>
+imap <C-l> <Right>
+
+"nightfly
+let g:nightflyCursorColor = 1
+let g:nightflyTerminalColors = 0
